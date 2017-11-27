@@ -12,6 +12,6 @@ ReactDOM.render(
     <Provider store={createStore(rootReducer)}>
       <App />
     </Provider>
-  ), document.getElementById('root')
+  ), document.getElementById('root'),
 );
 registerServiceWorker();
