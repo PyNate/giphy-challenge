@@ -19,6 +19,8 @@
   },
   "devDependencies": {
     "eslint": "^4.12.0",
-    "eslint-config-airbnb": "^16.1.0"
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "react-router-dom": "^4.2.2"
   }
 }

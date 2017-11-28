@@ -8,6 +8,7 @@ function GiphyList({ giphys }) {
       {
         giphys.map(giphy => (
           <Giphy
+            key={giphy.id}
             url={giphy.url}
             title={giphy.title}
           />
@@ -19,6 +20,7 @@ function GiphyList({ giphys }) {
 
 GiphyList.propTypes = {
   giphys: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
