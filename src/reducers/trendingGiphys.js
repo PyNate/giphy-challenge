@@ -5,9 +5,11 @@ const initialState = [];
 
 export default function trendingGiphysReducer(state = initialState, action) {
   let trendingGiphys;
-  console.log(action.type);
 
   switch (action.type) {
+    case API_ACTIONS.LOAD_TRENDING_FAILURE:
+      console.log(API_ACTIONS.LOAD_SEARCH_FAILURE);
+      return state;
     case API_ACTIONS.LOAD_TRENDING_SUCCESS:
       trendingGiphys = transformGiphyResponse(action.data);
       return trendingGiphys;

@@ -10,13 +10,6 @@ function mapStateToProps({ apiKey, trendingGiphys }) {
 }
 
 class GiphyTrendingListContainer extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dataLoaded: false,
-    };
-  }
-
   componentDidMount() {
     const { dispatch } = this.props;
     getTrendingGiphys(this.props.apiKey)
@@ -30,7 +23,6 @@ class GiphyTrendingListContainer extends Component {
       .then((data) => {
         if (data) {
           dispatch(loadTrendingGiphys(data));
-          this.setState({ dataLoaded: true });
         }
       });
   }
