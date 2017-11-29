@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { startSearch } from '../actions/apiActions';
+import { SEARCH } from '../constants/pathConstants';
 
 class Searchbar extends Component {
   constructor() {
@@ -33,7 +32,6 @@ class Searchbar extends Component {
 
   handleSearch(event) {
     event.preventDefault();
-    this.props.dispatch(startSearch(this.state.searchValue));
     this.setState({ fireRedirect: true });
   }
 
@@ -45,7 +43,7 @@ class Searchbar extends Component {
           <button type="submit">Search Giphys</button>
         </form>
         {this.state.fireRedirect &&
-          <Redirect push to={{ pathname: '/search', search: `?q=${this.state.searchValue}` }} />
+          <Redirect push to={{ pathname: SEARCH, search: `?q=${this.state.searchValue}` }} />
         }
       </div>
     );
@@ -53,7 +51,6 @@ class Searchbar extends Component {
 }
 
 Searchbar.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   location: PropTypes.shape({
     key: PropTypes.string,
   }),
@@ -61,4 +58,4 @@ Searchbar.propTypes = {
 
 Searchbar.defaultProps = { location: {} };
 
-export default connect()(Searchbar);
+export default Searchbar;

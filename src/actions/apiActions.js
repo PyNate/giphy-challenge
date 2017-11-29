@@ -1,3 +1,5 @@
+import getSearchQueryParam from '../utils/getSearchQueryParam';
+
 export const ACTIONS = {
   LOAD_TRENDING_FAILURE: 'LOAD_TRENDING_FAILURE',
   LOAD_TRENDING_SUCCESS: 'LOAD_TRENDING_SUCCESS',
@@ -28,7 +30,8 @@ export function loadGiphySearchFailure() {
   return { type: ACTIONS.LOAD_SEARCH_FAILURE };
 }
 
-export function startSearch(searchString) {
+export function startSearch(search) {
+  const searchString = getSearchQueryParam(search);
   return {
     type: ACTIONS.START_SEARCH,
     searchString,

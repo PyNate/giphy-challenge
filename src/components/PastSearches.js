@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SEARCH } from '../constants/pathConstants';
 
 
 function mapStateToProps({ searchTerms }) {
@@ -15,7 +16,7 @@ function PastSearches({ searchTerms }) {
         <li key={searchTerm}>
           <Link
             to={{
-              pathname: '/search',
+              pathname: SEARCH,
               search: `?q=${searchTerm}`,
             }}
           >

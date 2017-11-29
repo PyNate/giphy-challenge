@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GiphyList from './GiphyList';
 import { getGiphySearch } from '../api/giphyApi';
-import { loadGiphySearch, loadGiphySearchFailure } from '../actions/apiActions';
+import { loadGiphySearch, loadGiphySearchFailure, startSearch } from '../actions/apiActions';
 
 function mapStateToProps({ apiKey, searchResultGiphys }) {
   return { apiKey, searchResultGiphys };
@@ -27,6 +27,7 @@ class GiphySearchListContainer extends Component {
 
   fetchGiphys() {
     const { dispatch } = this.props;
+    dispatch(startSearch(this.props.location.search));
     getGiphySearch(this.props.apiKey, this.props.location.search)
       .then((res) => {
         if (res.status === 200) {

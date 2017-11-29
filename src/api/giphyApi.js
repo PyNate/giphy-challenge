@@ -1,5 +1,6 @@
 import buildUrl from '../utils/buildUrl';
 import GIPHY_URL from '../constants/giphyUrl';
+import getSearchQueryParam from '../utils/getSearchQueryParam';
 
 const TRENDING_ENDPOINT = '/trending';
 const SEARCH_ENDPOINT = '/search';
@@ -23,8 +24,7 @@ export function getTrendingGiphys(apiKey) {
 }
 
 export function getGiphySearch(apiKey, search) {
-  const queries = search.slice(1).split('&').filter(query => query.indexOf('q=') === 0);
-  const searchTerm = queries[0].slice(2);
+  const searchTerm = getSearchQueryParam(search);
 
   const params = {
     ...defaultParams,
