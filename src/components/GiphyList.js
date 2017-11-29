@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Giphy from './Giphy';
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 function GiphyList({ giphys }) {
   return (
-    <div>
+    <FlexContainer>
       {
         giphys.map(giphy => (
           <Giphy
@@ -14,7 +21,7 @@ function GiphyList({ giphys }) {
           />
         ))
       }
-    </div>
+    </FlexContainer>
   );
 }
 

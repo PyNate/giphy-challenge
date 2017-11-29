@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const PaddedImg = styled.img`
+  padding: 3px;
+`;
 
 function Giphy({ url, title }) {
   return (
-    <img src={url} alt={title} />
+    <PaddedImg src={url} alt={title} />
   );
 }
 
