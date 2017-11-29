@@ -7,6 +7,9 @@ export default function searchTermsReducer(state = [], action) {
       if (state.indexOf(action.searchString) < 0) {
         newState = state.slice();
         newState.push(action.searchString);
+        if (newState.length > 5) {
+          newState.shift();
+        }
         return newState;
       }
       return state;

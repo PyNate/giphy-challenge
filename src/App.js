@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import GiphySearchListContainer from './components/GiphySearchListContainer';
@@ -9,9 +9,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
-        <Route exact path="/" component={GiphyTrendingListContainer} />
-        <Route path="/search" component={GiphySearchListContainer} />
+        <Route path="/" component={Navbar} />
+        <Switch>
+          <Route exact path="/" component={GiphyTrendingListContainer} />
+          <Route path="/search" component={GiphySearchListContainer} />
+        </Switch>
       </div>
     </Router>
   );

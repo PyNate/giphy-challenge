@@ -14,8 +14,6 @@ const defaultSearchParams = {
   offset: 0,
 };
 
-// api_key=443NNsWe0RTCrrtqRyNS7cfqbTb4mFfF&limit=25&rating=G
-
 export function getTrendingGiphys(apiKey) {
   const params = {
     ...defaultParams,
@@ -24,7 +22,10 @@ export function getTrendingGiphys(apiKey) {
   return fetch(buildUrl(GIPHY_URL, TRENDING_ENDPOINT, params));
 }
 
-export function getGiphySearch(apiKey, searchTerm) {
+export function getGiphySearch(apiKey, search) {
+  const queries = search.slice(1).split('&').filter(query => query.indexOf('q=') === 0);
+  const searchTerm = queries[0].slice(2);
+
   const params = {
     ...defaultParams,
     ...defaultSearchParams,

@@ -3,16 +3,31 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import GiphyList from './GiphyList';
 import { getGiphySearch } from '../api/giphyApi';
-import { startSearch, loadGiphySearch, loadGiphySearchFailure } from '../actions/apiActions';
+import { loadGiphySearch, loadGiphySearchFailure } from '../actions/apiActions';
 
 function mapStateToProps({ apiKey, searchResultGiphys }) {
   return { apiKey, searchResultGiphys };
 }
 
 class GiphySearchListContainer extends Component {
+  constructor() {
+    super();
+    this.fetchGiphys = this.fetchGiphys.bind(this);
+  }
+
   componentDidMount() {
+    this.fetchGiphys();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.search !== this.props.location.search) {
+      this.fetchGiphys();
+    }
+  }
+
+  fetchGiphys() {
     const { dispatch } = this.props;
-    getGiphySearch(this.props.apiKey, 'test')
+    getGiphySearch(this.props.apiKey, this.props.location.search)
       .then((res) => {
         if (res.status === 200) {
           return res.json();
@@ -40,6 +55,11 @@ GiphySearchListContainer.propTypes = {
     url: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 };
+
+GiphySearchListContainer.defaultProps = { location: {} };
 
 export default connect(mapStateToProps)(GiphySearchListContainer);
